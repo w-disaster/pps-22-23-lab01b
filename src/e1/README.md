@@ -9,14 +9,16 @@ Consider the above [program](#program-description),
 We propose the following TDD approach:
 
 ## Step 1: Seal ```LogicsImpl``` logic
-1. Write some tests that pass on Logics/LogicsImpl and that capture the bulk of the logic's functionality
-2. Implement any small additions to Logics/LogicsImpl needed to do so
-3. Do not improve Logics/LogicsImpl at this point; we will do so later
+1. Write some tests that pass on `Logics`/`LogicsImpl` and that capture the bulk of the logic's functionality
+2. Implement any small additions to `Logics`/`LogicsImpl` needed to do so
+3. Do not improve `Logics`/`LogicsImpl` at this point; we will do so later
 4. Verify the system's functionality again
 
 ## Step 2: Fine improvements
-1. Consider an aspect of `LogicsImpl`'s implementation that can be externalized from `LogicsImpl` (SRP), i.e., inserted into a class of which `LogicsImpl` will consist
-2. Build the interface and its implementation with TDD, i.e., with various red-green-refactor steps on the new class
+1. Consider an aspect of `LogicsImpl`'s implementation that can be externalized from `LogicsImpl` (SRP), i.e., 
+   inserted into a class of which `LogicsImpl` will consist
+2. Build the interface and its implementation with TDD, i.e., 
+   with various red-green-refactor steps on the new class
 3. Remove the code from LogicsImpl and use it in the new class
 4. Re-run the tests for LogicsImpl and also perform manual testing on the GUI
 
