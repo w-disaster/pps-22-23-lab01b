@@ -29,7 +29,9 @@ At this point:
 # Program Description
 The goal of this exercise is to create
 a GUI with the appearance shown in the provided image:
+
 ![](https://user-images.githubusercontent.com/23448811/222983821-6b32db03-87fc-4bb6-9760-2e67c2f3f588.png)
+
 it contains a square grid of buttons (5x5),
 in which a pawn indicated with "*" and a knight indicated with "K"
 are both randomly positioned at the start.
