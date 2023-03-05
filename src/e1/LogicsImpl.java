@@ -46,4 +46,3 @@ public class LogicsImpl implements Logics {
 		return this.pawn.equals(new Pair<>(row,col));
 	}
 }
-
