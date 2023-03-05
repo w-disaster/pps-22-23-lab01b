@@ -1,6 +1,7 @@
 # Exercise 1 Description
 Consider the above [program](#program-description), 
- which is already working and is implemented with a GUI class 
+ which is already working ([`Main`](./Main.java) should launch the described program )
+ and is implemented with a GUI class 
  and interface/implementation for the logic. 
  The purpose of the exercise is to refactor the logic part of the project 
  (not the GUI) to improve its quality and achieve good testing of its various parts.
