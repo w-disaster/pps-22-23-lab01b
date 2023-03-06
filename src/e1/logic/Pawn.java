@@ -3,7 +3,7 @@ import e1.Pair;
 
 public class Pawn implements Agent {
 
-    Pair<Integer, Integer> position;
+    private Pair<Integer, Integer> position;
 
     public Pawn(Pair<Integer, Integer> position) {
         this.position = position;

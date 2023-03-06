@@ -3,7 +3,7 @@ import e1.Pair;
 
 public class Knight implements Agent  {
 
-    Pair<Integer, Integer> position;
+    private Pair<Integer, Integer> position;
 
     public Knight(Pair<Integer, Integer> position) {
         this.position = position;

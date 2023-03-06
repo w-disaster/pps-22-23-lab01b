@@ -4,7 +4,7 @@ import e1.Pair;
 
 public class BoardImpl implements Board {
 
-    Pair<Integer, Integer> dimensions;
+    private Pair<Integer, Integer> dimensions;
 
     public BoardImpl(Pair<Integer, Integer> dimensions) {
         this.dimensions = dimensions;
