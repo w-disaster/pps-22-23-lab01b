@@ -1,10 +1,12 @@
 package e1;
 
+import e1.logic.AgentFactory;
+import e1.logic.AgentFactoryImpl;
+import e1.logic.Logics;
+import e1.logic.LogicsImpl;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,33 +17,16 @@ public class LogicsTest {
     private Pair<Integer, Integer> initialPawnPosition;
     private static final int SIZE = 5;
 
-    private Pair<Integer, Integer> getKnightPosition() {
-        for (int row = 0; row < SIZE; row++) {
-            for (int col = 0; col < SIZE; col++) {
-                if (logics.hasKnight(row, col)) {
-                    return new Pair<>(row, col);
-                }
-            }
-        }
-        return new Pair<>(SIZE, SIZE);
-    }
-
-    private Pair<Integer, Integer> getPawnPosition() {
-        for (int row = 0; row < SIZE; row++) {
-            for (int col = 0; col < SIZE; col++) {
-                if (logics.hasPawn(row, col)) {
-                    return new Pair<>(row, col);
-                }
-            }
-        }
-        return new Pair<>(SIZE, SIZE);
-    }
 
     @BeforeEach
     void beforeEach() {
         initialPawnPosition = new Pair<>(0, 0);
         initialKnightPosition = new Pair<>(3, 3);
-        logics = new LogicsImpl(initialPawnPosition, initialKnightPosition, SIZE);
+        AgentFactory agentFactory = new AgentFactoryImpl();
+        logics = new LogicsImpl(
+                agentFactory.createKnightByPosition(initialKnightPosition),
+                agentFactory.createPawnByPosition(initialPawnPosition),
+                SIZE);
     }
 
     @Test
@@ -51,9 +36,9 @@ public class LogicsTest {
                 new Pair<>(initialKnightPosition.getX() - 2, initialKnightPosition.getY() - 1));
 
         for (Pair<Integer, Integer> nextPosition : nextPositions) {
-            if (!nextPosition.equals(getPawnPosition())) {
+            if (!nextPosition.equals(logics.getPawn().getPosition())) {
                 assertFalse(logics.hit(nextPosition.getX(), nextPosition.getY()));
-                assertEquals(nextPosition, getKnightPosition());
+                assertEquals(nextPosition, logics.getKnight().getPosition());
                 logics.hit(initialKnightPosition.getX(), initialKnightPosition.getY());
             } else {
                 assertTrue(logics.hit(nextPosition.getX(), nextPosition.getY()));
@@ -70,7 +55,7 @@ public class LogicsTest {
         for (Pair<Integer, Integer> nextPosition : nextPositions) {
             assertThrowsExactly(IndexOutOfBoundsException.class,
                     () -> logics.hit(nextPosition.getX(), nextPosition.getY()));
-            assertEquals(initialKnightPosition, getKnightPosition());
+            assertEquals(initialKnightPosition, logics.getKnight().getPosition());
         }
     }
 
@@ -82,7 +67,7 @@ public class LogicsTest {
 
         for (Pair<Integer, Integer> nextPosition : nextPositions) {
             assertFalse(logics.hit(nextPosition.getX(), nextPosition.getY()));
-            assertEquals(initialKnightPosition, getKnightPosition());
+            assertEquals(initialKnightPosition, logics.getKnight().getPosition());
         }
     }
 
@@ -90,7 +75,7 @@ public class LogicsTest {
     void testWin() {
         Pair<Integer, Integer> nextKnightPosition = new Pair<>(2, 1);
         assertFalse(logics.hit(nextKnightPosition.getX(), nextKnightPosition.getY()));
-        assertEquals(getKnightPosition(), nextKnightPosition);
+        assertEquals(logics.getKnight().getPosition(), nextKnightPosition);
         Pair<Integer, Integer> finalPosition = new Pair<>(0, 0);
         assertTrue(logics.hit(finalPosition.getX(), finalPosition.getY()));
     }
