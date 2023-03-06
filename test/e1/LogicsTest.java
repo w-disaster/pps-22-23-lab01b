@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LogicsTest {
 
     private Logics logics;
-    private Pair<Integer, Integer> knightPosition;
-    private Pair<Integer, Integer> pawnPosition;
+    private Pair<Integer, Integer> initialKnightPosition;
+    private Pair<Integer, Integer> initialPawnPosition;
     private static final int SIZE = 5;
 
     private Pair<Integer, Integer> getKnightPosition() {
@@ -39,14 +39,13 @@ public class LogicsTest {
 
     @BeforeEach
     void beforeEach() {
-        pawnPosition = new Pair<>(0, 0);
-        knightPosition = new Pair<>(3, 3);
-        logics = new LogicsImpl(pawnPosition, knightPosition, SIZE);
+        initialPawnPosition = new Pair<>(0, 0);
+        initialKnightPosition = new Pair<>(3, 3);
+        logics = new LogicsImpl(initialPawnPosition, initialKnightPosition, SIZE);
     }
 
     @Test
     void testAllowedKnightMoves() {
-        Pair<Integer, Integer> initialKnightPosition = knightPosition;
         List<Pair<Integer, Integer>> nextPositions = List.of(
                 new Pair<>(initialKnightPosition.getX() - 2, initialKnightPosition.getY() + 1),
                 new Pair<>(initialKnightPosition.getX() - 2, initialKnightPosition.getY() - 1));
@@ -64,7 +63,6 @@ public class LogicsTest {
 
     @Test
     void testOutOfBoundsMoves() {
-        Pair<Integer, Integer> initialKnightPosition = knightPosition;
         List<Pair<Integer, Integer>> nextPositions = List.of(
                 new Pair<>(initialKnightPosition.getX() + 2, initialKnightPosition.getY() + 1),
                 new Pair<>(initialKnightPosition.getX() + 1, initialKnightPosition.getY() + 2));
@@ -72,21 +70,29 @@ public class LogicsTest {
         for (Pair<Integer, Integer> nextPosition : nextPositions) {
             assertThrowsExactly(IndexOutOfBoundsException.class,
                     () -> logics.hit(nextPosition.getX(), nextPosition.getY()));
-            assertEquals(knightPosition, getKnightPosition());
+            assertEquals(initialKnightPosition, getKnightPosition());
         }
     }
 
     @Test
     void testNotAllowedKnightMoves() {
-        Pair<Integer, Integer> initialKnightPosition = knightPosition;
         List<Pair<Integer, Integer>> nextPositions = List.of(
                 new Pair<>(initialKnightPosition.getX() - 3, initialKnightPosition.getY() + 1),
                 new Pair<>(initialKnightPosition.getX() + 1, initialKnightPosition.getY() + 1));
 
         for (Pair<Integer, Integer> nextPosition : nextPositions) {
             assertFalse(logics.hit(nextPosition.getX(), nextPosition.getY()));
-            assertEquals(knightPosition, getKnightPosition());
+            assertEquals(initialKnightPosition, getKnightPosition());
         }
+    }
+
+    @Test
+    void testWin() {
+        Pair<Integer, Integer> nextKnightPosition = new Pair<>(2, 1);
+        assertFalse(logics.hit(nextKnightPosition.getX(), nextKnightPosition.getY()));
+        assertEquals(getKnightPosition(), nextKnightPosition);
+        Pair<Integer, Integer> finalPosition = new Pair<>(0, 0);
+        assertTrue(logics.hit(finalPosition.getX(), finalPosition.getY()));
     }
 
 }
