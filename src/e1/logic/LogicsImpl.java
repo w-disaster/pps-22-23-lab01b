@@ -13,16 +13,21 @@ public class LogicsImpl implements Logics {
 		this.pawn = pawn;
     	this.size = size;
     }
+
+	private boolean isInsideBounds(Pair<Integer, Integer> position) {
+		return !(position.getX() < 0 || position.getY() < 0 ||
+				position.getX() >= this.size || position.getY() >= this.size);
+	}
     
 	@Override
-	public boolean hit(int row, int col) {
-		if (row < 0 || col < 0 || row >= this.size || col >= this.size) {
+	public boolean hit(Pair<Integer, Integer> position) {
+		if (!isInsideBounds(position)) {
 			throw new IndexOutOfBoundsException();
 		}
 
-		if (this.knight.move(new Pair<>(row, col))) {
+		if (this.knight.move(position)) {
 			return this.knight.getPosition().equals(this.pawn.getPosition());
-		};
+		}
 		return false;
 	}
 

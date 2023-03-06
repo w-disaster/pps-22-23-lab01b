@@ -44,9 +44,9 @@ public class LogicsTest {
                 getPositionsByKightOffset(List.of(new Pair<>(-2, 1), new Pair<>(-2 , -1)));
 
         for (Pair<Integer, Integer> nextPosition : nextPositions) {
-            assertFalse(logics.hit(nextPosition.getX(), nextPosition.getY()));
+            assertFalse(logics.hit(nextPosition));
             assertEquals(nextPosition, logics.getKnight().getPosition());
-            logics.hit(initialKnightPosition.getX(), initialKnightPosition.getY());
+            logics.hit(initialKnightPosition);
         }
     }
 
@@ -57,7 +57,7 @@ public class LogicsTest {
 
         for (Pair<Integer, Integer> nextPosition : nextPositions) {
             assertThrowsExactly(IndexOutOfBoundsException.class,
-                    () -> logics.hit(nextPosition.getX(), nextPosition.getY()));
+                    () -> logics.hit(nextPosition));
             assertEquals(initialKnightPosition, logics.getKnight().getPosition());
         }
     }
@@ -68,7 +68,7 @@ public class LogicsTest {
                 getPositionsByKightOffset(List.of(new Pair<>(-3, 1), new Pair<>(1, 1)));
 
         for (Pair<Integer, Integer> nextPosition : nextPositions) {
-            assertFalse(logics.hit(nextPosition.getX(), nextPosition.getY()));
+            assertFalse(logics.hit(nextPosition));
             assertEquals(initialKnightPosition, logics.getKnight().getPosition());
         }
     }
@@ -76,11 +76,11 @@ public class LogicsTest {
     @Test
     void testWin() {
         Pair<Integer, Integer> nextKnightPosition = new Pair<>(2, 1);
-        assertFalse(logics.hit(nextKnightPosition.getX(), nextKnightPosition.getY()));
+        assertFalse(logics.hit(nextKnightPosition));
         assertEquals(logics.getKnight().getPosition(), nextKnightPosition);
 
         Pair<Integer, Integer> finalPosition = new Pair<>(0, 0);
-        assertTrue(logics.hit(finalPosition.getX(), finalPosition.getY()));
+        assertTrue(logics.hit(finalPosition));
     }
 
 }

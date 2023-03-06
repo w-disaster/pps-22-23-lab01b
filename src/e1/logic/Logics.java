@@ -1,17 +1,17 @@
 package e1.logic;
 
+import e1.Pair;
 import e1.logic.Agent;
 
 public interface Logics{
-    
+
     /**
-     * attempt to move Knight on position row,col, if possible
-     * 
-     * @param row
-     * @param col
-     * @return whether the pawn has been hit 
+     * attempt to move knight on position if possible
+     *
+     * @param position
+     * @return whether the pawn has been hit
      */
-    boolean hit(int row, int col);
+    boolean hit(Pair<Integer, Integer> position);
 
     /**
      *
