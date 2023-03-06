@@ -15,6 +15,12 @@ public interface Logics{
 
     /**
      *
+     * @return the board
+     */
+    Board getBoard();
+
+    /**
+     *
      * @return the knight inside the grid
      */
     Agent getKnight();

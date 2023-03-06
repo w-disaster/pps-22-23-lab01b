@@ -23,7 +23,7 @@ public class GUI extends JFrame {
         Agent knight = agentFactory.createRandomKnightWithoutCollide(List.of(), SIZE);
         Agent pawn = agentFactory.createRandomPawnWithoutCollide(List.of(knight.getPosition()), SIZE);
 
-        this.logics = new LogicsImpl(knight, pawn, SIZE);
+        this.logics = new LogicsImpl(new BoardImpl(SIZE), knight, pawn);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(100*SIZE, 100*SIZE);
         

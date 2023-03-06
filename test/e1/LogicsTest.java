@@ -1,9 +1,6 @@
 package e1;
 
-import e1.logic.AgentFactory;
-import e1.logic.AgentFactoryImpl;
-import e1.logic.Logics;
-import e1.logic.LogicsImpl;
+import e1.logic.*;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
@@ -31,11 +28,12 @@ public class LogicsTest {
     void beforeEach() {
         initialPawnPosition = new Pair<>(0, 0);
         initialKnightPosition = new Pair<>(3, 3);
+
         AgentFactory agentFactory = new AgentFactoryImpl();
         logics = new LogicsImpl(
+                new BoardImpl(SIZE),
                 agentFactory.createKnightByPosition(initialKnightPosition),
-                agentFactory.createPawnByPosition(initialPawnPosition),
-                SIZE);
+                agentFactory.createPawnByPosition(initialPawnPosition));
     }
 
     @Test
