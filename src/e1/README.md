@@ -1,28 +1,28 @@
 # Exercise 1 Description
-Consider the above [program](#program-description), 
+Consider the above [program](#program-description),
  which is already working ([`Main`](./Main.java) should launch the described program )
- and is implemented with a GUI class 
- and interface/implementation for the logic. 
- The purpose of the exercise is to refactor the logic part of the project 
- (not the GUI) to improve its quality and achieve good testing of its various parts.
+ and is implemented with a GUI class
+ and interface/implementation for the logic.
+ The purpose of the exercise is to refactor the logic part of the project
+ (not the GUI, do not focus on it!) to improve its quality and achieve good testing of its various parts.
 
-We propose the following TDD approach:
+We propose the following TDD approach (but you can adapt it):
 
 ## Step 1: Seal ```LogicsImpl``` logic
-1. Write some tests that pass on `Logics`/`LogicsImpl` and that capture the bulk of the logic's functionality
-2. Implement any small additions to `Logics`/`LogicsImpl` needed to do so
+1. Write some tests that pass on `Logics`/`LogicsImpl` and that capture the core of the logic's functionality
+2. Implement any small additions to `Logics`/`LogicsImpl` needed to do so (e.g., additional constructors?)
 3. Do not improve `Logics`/`LogicsImpl` at this point; we will do so later
 4. Verify the system's functionality again
 
-## Step 2: Fine improvements
-1. Consider an aspect of `LogicsImpl`'s implementation that can be externalized from `LogicsImpl` (SRP), i.e., 
-   inserted into a class of which `LogicsImpl` will consist
-2. Build the interface and its implementation with TDD, i.e., 
+## Step 2: Refactor to improve design
+1. Consider an aspect of `LogicsImpl`'s implementation that can be externalized from `LogicsImpl` (SRP), i.e.,
+   inserted into a new class which `LogicsImpl` will be composed of
+2. Build the interface and its implementation of this new class with TDD, i.e.,
    with various red-green-refactor steps on the new class
-3. Remove the code from LogicsImpl and use it in the new class
+3. Have LogicsImpl use this new class
 4. Re-run the tests for LogicsImpl and also perform manual testing on the GUI
 
-Repeat these steps `LogicsImpl` has been significantly reduced. 
+Repeat these steps until `LogicsImpl` has been significantly reduced.
 
 ## Step 3: Final refinements
 At this point:
@@ -35,7 +35,7 @@ a GUI with the appearance shown in the provided image:
 
 ![](https://user-images.githubusercontent.com/23448811/222983821-6b32db03-87fc-4bb6-9760-2e67c2f3f588.png)
 
-it contains a square grid of buttons (5x5),
+it contains a chess-like square grid of buttons (5x5),
 in which a pawn indicated with "*" and a knight indicated with "K"
 are both randomly positioned at the start.
 
