@@ -52,4 +52,11 @@ public class WorldTest {
                 this.worldFactory.createWorldGivenBombs(this.size, bombCells));
     }
 
+    @Test
+    void testWorldWithRandomBombs() {
+        this.world = this.worldFactory.createWorldWithRandomBombs(this.size);
+        assertTrue(this.world.getCells().stream()
+                .anyMatch(c -> c.getType().equals(Type.BOMB)));
+    }
+
 }
