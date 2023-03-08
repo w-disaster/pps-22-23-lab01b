@@ -47,7 +47,7 @@ public class WorldFactoryImpl implements WorldFactory {
     @Override
     public World createWorldGivenMines(int size, List<MineCell> mines) {
         if(mines.stream()
-                .map(CellImpl::getPosition)
+                .map(AbstractCell::getPosition)
                 .anyMatch(b -> b.getX() >= size || b.getY() >= size)) {
             throw new IndexOutOfBoundsException();
         }

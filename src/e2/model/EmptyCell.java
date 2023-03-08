@@ -5,7 +5,7 @@ import e2.State;
 
 import java.util.Optional;
 
-public class EmptyCell extends CellImpl {
+public class EmptyCell extends AbstractCell {
 
     private Optional<Integer> number;
 

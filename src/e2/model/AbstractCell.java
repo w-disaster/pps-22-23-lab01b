@@ -6,21 +6,23 @@ import e2.State;
 import java.util.Objects;
 import java.util.Optional;
 
-public abstract class CellImpl implements Cell {
+public abstract class AbstractCell implements Cell {
 
     private Pair<Integer, Integer> position;
     private Type type;
     private State state;
 
-    public CellImpl(Pair<Integer, Integer> position, Type type, State state) {
+    public AbstractCell(Pair<Integer, Integer> position, Type type, State state) {
         this.position = position;
         this.type = type;
         this.state = state;
     }
 
+    @Override
     public abstract Optional<Integer> getNumber();
 
-    public abstract void setNumber(int number);
+    @Override
+    public abstract void setNumber(int numBombs);
 
     @Override
     public Pair<Integer, Integer> getPosition() {
@@ -46,7 +48,7 @@ public abstract class CellImpl implements Cell {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CellImpl cell = (CellImpl) o;
+        AbstractCell cell = (AbstractCell) o;
         return Objects.equals(position, cell.position) && type == cell.type && state == cell.state;
     }
 

@@ -5,7 +5,7 @@ import e2.State;
 
 import java.util.Optional;
 
-public class MineCell extends CellImpl {
+public class MineCell extends AbstractCell {
 
     public MineCell(Pair<Integer, Integer> position) {
         super(position, Type.MINE, State.ENABLED);
