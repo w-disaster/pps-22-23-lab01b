@@ -1,7 +1,7 @@
 package e2;
 
-import e2.logics.Logics;
-import e2.logics.LogicsImpl;
+import e2.logic.Logics;
+import e2.logic.LogicsImpl;
 import e2.model.WorldFactoryImpl;
 
 import javax.swing.*;

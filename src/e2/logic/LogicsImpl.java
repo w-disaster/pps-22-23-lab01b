@@ -1,4 +1,4 @@
-package e2.logics;
+package e2.logic;
 
 import e2.Pair;
 import e2.State;
