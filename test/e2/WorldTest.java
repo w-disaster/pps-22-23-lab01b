@@ -13,13 +13,13 @@ public class WorldTest {
     private World world;
     private int size;
 
-    private void testGridCells(List<BombCell> bombCells) {
+    private void testGridCells(List<MineCell> mineCells) {
         for (int row = 0; row < this.size; row++) {
             for (int col = 0; col < this.size; col++) {
                 Pair<Integer, Integer> position = new Pair<>(row, col);
-                if (bombCells.stream()
+                if (mineCells.stream()
                         .anyMatch(b -> b.getPosition().equals(position))) {
-                    assertEquals(this.world.getCellFromPosition(position).getType(), Type.BOMB);
+                    assertEquals(this.world.getCellFromPosition(position).getType(), Type.MINE);
                 } else {
                     assertEquals(this.world.getCellFromPosition(position).getType(), Type.EMPTY);
                 }
@@ -34,28 +34,28 @@ public class WorldTest {
     }
 
     @Test
-    void testWorldGivenValidBombCells() {
-        List<BombCell> bombCells = List.of(new BombCell(new Pair<>(0, 0), State.ENABLED),
-                new BombCell(new Pair<>(1, 1), State.ENABLED),
-                new BombCell(new Pair<>(4, 4), State.ENABLED),
-                new BombCell(new Pair<>(6, 6), State.ENABLED));
-        this.world = this.worldFactory.createWorldGivenBombs(this.size, bombCells);
-        testGridCells(bombCells);
+    void testWorldGivenValidMines() {
+        List<MineCell> mineCells = List.of(new MineCell(new Pair<>(0, 0)),
+                new MineCell(new Pair<>(1, 1)),
+                new MineCell(new Pair<>(4, 4)),
+                new MineCell(new Pair<>(6, 6)));
+        this.world = this.worldFactory.createWorldGivenMines(this.size, mineCells);
+        testGridCells(mineCells);
     }
 
     @Test
-    void testWorldGivenInvalidBombCells() {
-        List<BombCell> bombCells = List.of(new BombCell(new Pair<>(0, 0), State.ENABLED),
-                new BombCell(new Pair<>(1, 1), State.ENABLED),
-                new BombCell(new Pair<>(10, 6), State.ENABLED));
+    void testWorldGivenInvalidMines() {
+        List<MineCell> mineCells = List.of(new MineCell(new Pair<>(0, 0)),
+                new MineCell(new Pair<>(1, 1)),
+                new MineCell(new Pair<>(10, 6)));
         assertThrowsExactly(IndexOutOfBoundsException.class, () ->
-                this.worldFactory.createWorldGivenBombs(this.size, bombCells));
+                this.worldFactory.createWorldGivenMines(this.size, mineCells));
     }
 
     @Test
-    void testWorldWithRandomBombs() {
-        this.world = this.worldFactory.createWorldWithRandomBombs(this.size, this.size);
-        assertFalse(this.world.getPositionsFromType(Type.BOMB).isEmpty());
+    void testWorldWithRandomMines() {
+        this.world = this.worldFactory.createWorldWithRandomMines(this.size, this.size);
+        assertFalse(this.world.getPositionsFromType(Type.MINE).isEmpty());
     }
 
 }

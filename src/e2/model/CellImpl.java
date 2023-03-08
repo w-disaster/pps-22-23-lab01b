@@ -18,6 +18,10 @@ public abstract class CellImpl implements Cell {
         this.state = state;
     }
 
+    public abstract Optional<Integer> getNumber();
+
+    public abstract void setNumber(int number);
+
     @Override
     public Pair<Integer, Integer> getPosition() {
         return this.position;
@@ -37,10 +41,6 @@ public abstract class CellImpl implements Cell {
     public void setState(State state) {
         this.state = state;
     }
-
-    public abstract Optional<Integer> getNumber();
-
-    public abstract void setNumber(int numBombs);
 
     @Override
     public boolean equals(Object o) {

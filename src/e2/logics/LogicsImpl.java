@@ -6,8 +6,6 @@ import e2.model.Cell;
 import e2.model.Type;
 import e2.model.World;
 
-import java.util.*;
-
 public class LogicsImpl implements Logics {
 
     private World world;
@@ -21,24 +19,22 @@ public class LogicsImpl implements Logics {
                 position.getX() >= this.world.getSize() || position.getY() >= this.world.getSize());
     }
 
-    private int numberOfAdjacentBombs(Pair<Integer, Integer> position) {
-        int numBombs = 0;
+    private int numberOfAdjacentMines(Pair<Integer, Integer> position) {
+        int numMines = 0;
         for (int xOffset = -1; xOffset <= 1; xOffset++) {
             for (int yOffset = -1; yOffset <= 1; yOffset++) {
                 if (!(xOffset == 0 && yOffset == 0)) {
                     Pair<Integer, Integer> neighbor = new Pair<>(position.getX() + xOffset,
                             position.getY() + yOffset);
-                    System.out.println(neighbor);
                     if (isInsideBounds(neighbor)) {
-                        if (this.world.getCellFromPosition(neighbor).getType().equals(Type.BOMB)) {
-                            numBombs = numBombs + 1;
+                        if (this.world.getCellFromPosition(neighbor).getType().equals(Type.MINE)) {
+                            numMines = numMines + 1;
                         }
                     }
                 }
             }
         }
-        System.out.println(numBombs);
-        return numBombs;
+        return numMines;
     }
 
     private void exploreAdjacentCells(Pair<Integer, Integer> position) {
@@ -63,12 +59,12 @@ public class LogicsImpl implements Logics {
     public boolean explore(Pair<Integer, Integer> position) {
         if (this.world.getCellFromPosition(position)
                 .getType()
-                .equals(Type.BOMB)) {
+                .equals(Type.MINE)) {
             return true;
         }
-        int numBombs = numberOfAdjacentBombs(position);
-        this.world.explore(position, numBombs);
-        if (numBombs == 0) {
+        int numMines = numberOfAdjacentMines(position);
+        this.world.disable(position, numMines);
+        if (numMines == 0) {
             exploreAdjacentCells(position);
         }
         return false;

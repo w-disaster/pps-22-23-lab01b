@@ -9,8 +9,8 @@ public class EmptyCell extends CellImpl {
 
     private Optional<Integer> number;
 
-    public EmptyCell(Pair<Integer, Integer> position, State state) {
-        super(position, Type.EMPTY, state);
+    public EmptyCell(Pair<Integer, Integer> position) {
+        super(position, Type.EMPTY, State.ENABLED);
         this.number = Optional.empty();
     }
 

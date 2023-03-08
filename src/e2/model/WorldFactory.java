@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface WorldFactory {
 
-    World createWorldWithRandomBombs(int size, int numBombs);
+    World createWorldWithRandomMines(int size, int numMines);
 
-    World createWorldGivenBombs(int size, List<BombCell> bombs);
+    World createWorldGivenMines(int size, List<MineCell> mines);
 }

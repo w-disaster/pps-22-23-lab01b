@@ -16,13 +16,12 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public Type explore(Pair<Integer, Integer> position, int number) {
+    public void disable(Pair<Integer, Integer> position, int number) {
         Cell cell = this.getCellFromPosition(position);
         if (cell.getState().equals(State.ENABLED)) {
             cell.setState(State.DISABLED);
             cell.setNumber(number);
         }
-        return cell.getType();
     }
 
     @Override
@@ -35,10 +34,13 @@ public class WorldImpl implements World {
 
     @Override
     public Cell getCellFromPosition(Pair<Integer, Integer> position) {
-        return this.cells.stream()
+        Optional<Cell> cell = this.cells.stream()
                 .filter(c -> c.getPosition().equals(position))
-                .findFirst()
-                .get();
+                .findFirst();
+        if (cell.isPresent()) {
+            return cell.get();
+        }
+        throw new IndexOutOfBoundsException();
     }
 
 

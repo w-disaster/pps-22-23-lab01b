@@ -21,7 +21,7 @@ public class GUI extends JFrame {
     private final Logics logics;
     
     public GUI(int size) {
-        this.logics = new LogicsImpl(new WorldFactoryImpl().createWorldWithRandomBombs(size, size));
+        this.logics = new LogicsImpl(new WorldFactoryImpl().createWorldWithRandomMines(size, size));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(100 * size, 100 * size);
         
@@ -74,7 +74,7 @@ public class GUI extends JFrame {
     
     private void quitGame() {
         this.drawBoard();
-        List<Pair<Integer, Integer>> bombCells = this.logics.getWorld().getPositionsFromType(e2.model.Type.BOMB);
+        List<Pair<Integer, Integer>> bombCells = this.logics.getWorld().getPositionsFromType(e2.model.Type.MINE);
     	for (var entry : this.buttons.entrySet()) {
             if (entry.getKey().isEnabled() && bombCells.contains(entry.getValue())) {
                 entry.getKey().setText("*");

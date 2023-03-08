@@ -5,10 +5,10 @@ import e2.State;
 
 import java.util.Optional;
 
-public class BombCell extends CellImpl {
+public class MineCell extends CellImpl {
 
-    public BombCell(Pair<Integer, Integer> position, State state) {
-        super(position, Type.BOMB, state);
+    public MineCell(Pair<Integer, Integer> position) {
+        super(position, Type.MINE, State.ENABLED);
     }
 
     @Override
@@ -17,5 +17,5 @@ public class BombCell extends CellImpl {
     }
 
     @Override
-    public void setNumber(int numBombs) {}
+    public void setNumber(int number) {}
 }
