@@ -8,13 +8,11 @@ import java.util.stream.Stream;
 
 public class WorldFactoryImpl implements WorldFactory {
 
-    public static final int NUM_BOMBS = 10;
-
-    private List<BombCell> initRandomBombCells(int size) {
+    private List<BombCell> initRandomBombCells(int size, int numBombs) {
         Random random = new Random();
         List<BombCell> bombCells = new ArrayList<>();
 
-        for (int i = 0; i < NUM_BOMBS; i++) {
+        for (int i = 0; i < numBombs; i++) {
             Pair<Integer, Integer> bombPosition =
                     new Pair<>(random.nextInt(size), random.nextInt(size));
             while (bombCells.stream()
@@ -42,8 +40,8 @@ public class WorldFactoryImpl implements WorldFactory {
     }
 
     @Override
-    public World createWorldWithRandomBombs(int size) {
-        List<BombCell> bombCells = initRandomBombCells(size);
+    public World createWorldWithRandomBombs(int size, int numBombs) {
+        List<BombCell> bombCells = initRandomBombCells(size, numBombs);
         return createWorldGivenBombs(size, bombCells);
     }
 

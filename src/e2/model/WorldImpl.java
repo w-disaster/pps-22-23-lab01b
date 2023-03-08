@@ -16,9 +16,31 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public List<Cell> getCells() {
-        return this.cells;
+    public Type explore(Pair<Integer, Integer> position, int number) {
+        Cell cell = this.getCellFromPosition(position);
+        if (cell.getState().equals(State.ENABLED)) {
+            cell.setState(State.DISABLED);
+            cell.setNumber(number);
+        }
+        return cell.getType();
     }
+
+    @Override
+    public List<Pair<Integer, Integer>> getPositionsFromType(Type type) {
+        return this.cells.stream()
+                .filter(c -> c.getType().equals(type))
+                .map(Cell::getPosition)
+                .toList();
+    }
+
+    @Override
+    public Cell getCellFromPosition(Pair<Integer, Integer> position) {
+        return this.cells.stream()
+                .filter(c -> c.getPosition().equals(position))
+                .findFirst()
+                .get();
+    }
+
 
     @Override
     public int getSize() {

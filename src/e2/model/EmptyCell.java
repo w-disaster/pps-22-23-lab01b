@@ -7,20 +7,20 @@ import java.util.Optional;
 
 public class EmptyCell extends CellImpl {
 
-    private Optional<Integer> numAdjacentBombs;
+    private Optional<Integer> number;
 
     public EmptyCell(Pair<Integer, Integer> position, State state) {
         super(position, Type.EMPTY, state);
-        this.numAdjacentBombs = Optional.empty();
+        this.number = Optional.empty();
     }
 
     @Override
-    public Optional<Integer> getNumAdjacentBombs() {
-        return this.numAdjacentBombs;
+    public Optional<Integer> getNumber() {
+        return this.number;
     }
 
     @Override
-    public void setNumAdjacentBombs(int numBombs) {
-        this.numAdjacentBombs = Optional.of(numBombs);
+    public void setNumber(int number) {
+        this.number = Optional.of(number);
     }
 }

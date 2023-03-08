@@ -38,9 +38,9 @@ public abstract class CellImpl implements Cell {
         this.state = state;
     }
 
-    public abstract Optional<Integer> getNumAdjacentBombs();
+    public abstract Optional<Integer> getNumber();
 
-    public abstract void setNumAdjacentBombs(int numBombs);
+    public abstract void setNumber(int numBombs);
 
     @Override
     public boolean equals(Object o) {

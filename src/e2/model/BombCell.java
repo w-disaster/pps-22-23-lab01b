@@ -12,10 +12,10 @@ public class BombCell extends CellImpl {
     }
 
     @Override
-    public Optional<Integer> getNumAdjacentBombs() {
+    public Optional<Integer> getNumber() {
         return Optional.empty();
     }
 
     @Override
-    public void setNumAdjacentBombs(int numBombs) {}
+    public void setNumber(int numBombs) {}
 }

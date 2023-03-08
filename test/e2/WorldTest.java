@@ -19,9 +19,9 @@ public class WorldTest {
                 Pair<Integer, Integer> position = new Pair<>(row, col);
                 if (bombCells.stream()
                         .anyMatch(b -> b.getPosition().equals(position))) {
-                    assertTrue(this.world.getCells().contains(new BombCell(position, State.ENABLED)));
+                    assertEquals(this.world.getCellFromPosition(position).getType(), Type.BOMB);
                 } else {
-                    assertTrue(this.world.getCells().contains(new EmptyCell(position, State.ENABLED)));
+                    assertEquals(this.world.getCellFromPosition(position).getType(), Type.EMPTY);
                 }
             }
         }
@@ -54,9 +54,8 @@ public class WorldTest {
 
     @Test
     void testWorldWithRandomBombs() {
-        this.world = this.worldFactory.createWorldWithRandomBombs(this.size);
-        assertTrue(this.world.getCells().stream()
-                .anyMatch(c -> c.getType().equals(Type.BOMB)));
+        this.world = this.worldFactory.createWorldWithRandomBombs(this.size, this.size);
+        assertFalse(this.world.getPositionsFromType(Type.BOMB).isEmpty());
     }
 
 }
