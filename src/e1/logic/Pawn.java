@@ -1,7 +1,7 @@
 package e1.logic;
 import e1.Pair;
 
-public class Pawn extends AgentImpl {
+public class Pawn extends AbstractAgent {
 
     public Pawn(Pair<Integer, Integer> position) {
         super(position);

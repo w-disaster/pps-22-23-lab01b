@@ -51,3 +51,7 @@ it could only move to 3 squares,
 i.e., (3,1) by capturing the pawn, (2,2) and (2,4).
 Clicking on an invalid position should not do anything.
 When the knight lands on the pawn, the application should be closed.
+
+# UML Class diagram
+
+![](./class_uml.svg)

@@ -2,11 +2,11 @@ package e1.logic;
 
 import e1.Pair;
 
-public abstract class AgentImpl implements Agent {
+public abstract class AbstractAgent implements Agent {
 
     protected Pair<Integer, Integer> position;
 
-    public AgentImpl(Pair<Integer, Integer> position) {
+    public AbstractAgent(Pair<Integer, Integer> position) {
         this.position = position;
     }
 
