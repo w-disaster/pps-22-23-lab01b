@@ -53,3 +53,7 @@ As quality objectives, take inspiration from the following:
 Architectural suggestions:
 1) Model the position of a cell with a `Cell` interface/class, capturing the concepts of adjacency
 2) Model the grid with a `Grid` interface/class
+
+# UML Class diagram
+
+![UML class](./uml_class.svg)
